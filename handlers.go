@@ -6,9 +6,6 @@ import (
 	"io"
 	"io/ioutil"
 	"net/http"
-	//"strconv"
-
-	//"github.com/gorilla/mux"
 )
 
 func Index(w http.ResponseWriter, r *http.Request) {
@@ -32,7 +29,8 @@ func FileInputCreate(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	t := FindLength(input.Line)
+	t := FindLongestLine(input.FileBytes)
+	
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusCreated)
 	if err := json.NewEncoder(w).Encode(t); err != nil {

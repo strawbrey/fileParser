@@ -1,5 +1,5 @@
 package main
 
 type FileInput struct {
-	Line    string       `json:"line"`
+	FileBytes []byte       `json:"fileBytes"` 
 }
