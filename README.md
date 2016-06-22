@@ -1,8 +1,6 @@
-# Example 9
+## file parser
 
-## Running the exmaple
-
-To run this exmaple, from the root of this project:
+To run this fileparser, from the root of this project:
 
 ```sh
 go run *.go
