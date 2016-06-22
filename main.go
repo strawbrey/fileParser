@@ -57,10 +57,10 @@ var routes = Routes{
 		Index,
 	},
 	Route{
-		"FileInputCreate",
+		"FileLongestLine",
 		"POST",
-		"/fileInput",
-		FileInputCreate,
+		"/longestLine",
+		FileLongestLine,
 	},
 }
 
@@ -70,10 +70,10 @@ type FileInput struct {
 
 
 func Index(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "Welcome to the file parser service!\n")
+	fmt.Fprint(w, "Welcome to the file parser service!\n To find longest line in file: \n POST /longestLine \n request: \n { \"fileBytes\": <base64_encoded_file> }")
 }
 
-func FileInputCreate(w http.ResponseWriter, r *http.Request) {
+func FileLongestLine(w http.ResponseWriter, r *http.Request) {
 	var input FileInput
 	body, err := ioutil.ReadAll(io.LimitReader(r.Body, 1048576))
 	if err != nil {
@@ -93,7 +93,7 @@ func FileInputCreate(w http.ResponseWriter, r *http.Request) {
 	t := FindLongestLine(input.FileBytes)
 	
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusCreated)
+	w.WriteHeader(http.StatusOK)
 	if err := json.NewEncoder(w).Encode(t); err != nil {
 		panic(err)
 	}
