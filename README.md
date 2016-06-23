@@ -1,7 +1,7 @@
-## file parser
+## file parser - find longest line in file
 
 To run this fileparser, from the root of this project:
 
 ```sh
-go run *.go
+go run main.go
 ```
